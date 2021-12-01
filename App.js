@@ -32,24 +32,24 @@ function ListadoScreen({navigation}) {
     },
   ];
   
-  
-  const Item = ({nombre,renderItem}) => (
+
+  const item = ({ item }) => (
     <View style={styles.item}>
       <TouchableOpacity
           style={styles.title}
           onPress={() =>
-            navigation.navigate('Detalles', {ite: renderItem})
+            navigation.navigate('Detalles',{item:item})
           }
         >
-          <Text>{nombre}</Text>
+          <Text>{item.nombre}</Text>
         </TouchableOpacity>
     </View>
   );
   const renderItem = ({ item }) => (
-    <Item nombre={item.nombre} />
+    <item nombre={item.nombre} />
   );
-  return (
 
+  return (
     <SafeAreaView style={styles.container}>
 
       <FlatList
@@ -69,10 +69,10 @@ function InformacionScreen() {
     </View>
   );
 }//informacionScreen
-function DetallesScreen() {
+function DetallesScreen({route}) {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>gkjg</Text>
+      <Text>nombre: </Text>
     </View>
     
   );
