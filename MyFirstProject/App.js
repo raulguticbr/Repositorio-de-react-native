@@ -11,7 +11,7 @@ const Tab = createBottomTabNavigator();
 
 
 function ListadoScreen({navigation}) {
-  const DATA = [
+  const users = [
     {
       id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
       nombre: 'Raul Gutierrez España',
@@ -30,10 +30,10 @@ function ListadoScreen({navigation}) {
       edad:'23',
       sexo:'varon',
     },
-  ];
+  ]
   
 
-  const item = ({ item }) => (
+  const Item = ({item, renderItem }) => (
     <View style={styles.item}>
       <TouchableOpacity
           style={styles.title}
@@ -46,14 +46,14 @@ function ListadoScreen({navigation}) {
     </View>
   );
   const renderItem = ({ item }) => (
-    <item nombre={item.nombre} />
+    <Item nombre={item.nombre}  item={item} />
   );
 
   return (
     <SafeAreaView style={styles.container}>
 
       <FlatList
-        data={DATA}
+        data={users}
         renderItem={renderItem}
         keyExtractor={item => item.id}
       />
@@ -72,7 +72,9 @@ function InformacionScreen() {
 function DetallesScreen({route}) {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>nombre: </Text>
+      <Text>nombre:{route.params.item.nombre} </Text>
+      <Text>edad: {route.params.item.edad}</Text>
+      <Text>sexo: {route.params.item.sexo}</Text>
     </View>
     
   );
